@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Balaji K — Data Analyst Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f6f2;
+      --ink: #111110;
+      --muted: #888880;
+      --accent: #2a5cff;
+      --border: #e0dfd8;
+      --card: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Sora', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 3rem;
+      background: rgba(247,246,242,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 3rem 4rem;
+      max-width: 1100px; margin: 0 auto;
+      opacity: 0; animation: fadeUp 0.9s 0.2s forwards;
+    }
+
+    .hero-inner { max-width: 700px; }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.6rem;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 28px; height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.6rem;
+    }
+
+    h1 .highlight { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.8rem;
+    }
+
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.8rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1.5px solid transparent;
+    }
+
+    .btn-primary { background: var(--ink); color: #fff; }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); }
+
+    .btn-outline { background: transparent; color: var(--ink); border-color: var(--border); }
+    .btn-outline:hover { border-color: var(--ink); }
+
+    section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+    .about-text p {
+      color: var(--muted);
+      font-size: 0.97rem;
+      margin-bottom: 1rem;
+    }
+
+    .skills-group { margin-bottom: 1.8rem; }
+    .skills-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.7rem;
+    }
+
+    .skills-list {
+      display: flex; flex-wrap: wrap;
+      gap: 0.45rem;
+      list-style: none;
+    }
+    .skills-list li {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.73rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 3px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: all 0.25s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .project-card.visible { opacity: 1; transform: translateY(0); }
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(42,92,255,0.08);
+      transform: translateY(-3px);
+    }
+
+    .project-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.1em;
+    }
+
+    .project-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-card ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    .project-card ul li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0.2rem 0 0.2rem 1rem;
+      position: relative;
+      line-height: 1.5;
+    }
+    .project-card ul li::before {
+      content: '›';
+      position: absolute; left: 0;
+      color: var(--accent);
+    }
+
+    .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      background: var(--bg);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .edu-list { display: flex; flex-direction: column; }
+    .edu-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0; transform: translateY(16px);
+      transition: all 0.5s;
+    }
+    .edu-item.visible { opacity: 1; transform: translateY(0); }
+
+    .edu-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding-top: 0.2rem;
+    }
+
+    .edu-content h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .edu-content .edu-inst { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.3rem; }
+    .edu-content p { font-size: 0.85rem; color: var(--muted); }
+
+    .coursework-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 3.5rem;
+    }
+
+    .course-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.1rem 1.3rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 0.6rem;
+      opacity: 0; transform: translateY(14px);
+      transition: all 0.4s;
+    }
+    .course-card.visible { opacity: 1; transform: translateY(0); }
+    .course-card::before {
+      content: '◈';
+      color: var(--accent);
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    .contact-wrap {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .contact-wrap h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .contact-wrap p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .contact-details {
+      display: flex; justify-content: center;
+      gap: 2rem; flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .contact-details a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      text-decoration: none;
+      color: var(--ink);
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .contact-details a:hover { color: var(--accent); }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .full-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 3rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 700px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .edu-item { grid-template-columns: 1fr; gap: 0.3rem; }
+      .full-divider { margin: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">balaji.k</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Aspiring Data Analyst</div>
+      <h1>Hi, I'm <span class="highlight">Balaji K</span> —<br>I turn data into decisions.</h1>
+      <p class="hero-sub">Data analytics enthusiast skilled in Python, SQL, and Power BI. Passionate about uncovering insights, building dashboards, and solving real-world problems through data.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View my work ↓</a>
+        <a href="#contact" class="btn btn-outline">Get in touch</a>
+      </div>
+    </div>
+  </div>
+
+  <hr class="full-divider"/>
+
+  <section id="about">
+    <div class="section-label">About me</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2>Curious about data.<br>Driven by insight.</h2>
+        <p>I'm a final-year Information Science Engineering student at VTU with a strong foundation in data analysis, SQL querying, and Power BI dashboards. I enjoy building systems that make data accessible and actionable.</p>
+        <p>Currently deepening my skills in Object-Oriented Programming and advanced analytics — always looking for opportunities to apply what I learn to real problems.</p>
+        <p>I speak English, Telugu, and Kannada.</p>
+      </div>
+      <div>
+        <div class="skills-group">
+          <div class="skills-group-title">Data & Analytics</div>
+          <ul class="skills-list">
+            <li>SQL</li><li>Excel</li><li>Power BI</li><li>DAX</li><li>Power Query</li>
+          </ul>
+        </div>
+        <div class="skills-group">
+          <div class="skills-group-title">Programming</div>
+          <ul class="skills-list">
+            <li>Python</li><li>OOP</li><li>TensorFlow</li><li>NumPy</li><li>Pandas</li><li>OpenCV</li>
+          </ul>
+        </div>
+        <div class="skills-group">
+          <div class="skills-group-title">Visualization</div>
+          <ul class="skills-list">
+            <li>Bar Charts</li><li>Map Charts</li><li>Column Charts</li><li>KPI Dashboards</li>
+          </ul>
+        </div>
+        <div class="skills-group">
+          <div class="skills-group-title">Web & Database</div>
+          <ul class="skills-list">
+            <li>MySQL</li><li>HTML</li><li>CSS</li><li>JavaScript</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="full-divider"/>
+
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <h3>Catering Management System</h3>
+        <ul>
+          <li>Web-based system for handling online orders and customer data</li>
+          <li>Menu selection, order booking, and database integration</li>
+          <li>Responsive and user-friendly interface design</li>
+          <li>Reduced manual effort through automation</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <h3>Auto Diagnosis of Parkinson's Disease</h3>
+        <ul>
+          <li>Deep learning model detecting Parkinson's from facial/video input</li>
+          <li>TensorFlow, OpenCV, and NumPy for data processing and training</li>
+          <li>Data preprocessing, feature extraction, and model evaluation</li>
+          <li>Automated system built for early diagnosis support</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">NumPy</span><span class="tag">Pandas</span><span class="tag">OpenCV</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <h3>Blinkit Sales Analysis Dashboard</h3>
+        <ul>
+          <li>Interactive Power BI dashboard for business insights</li>
+          <li>KPIs built using DAX for sales tracking</li>
+          <li>Data cleaning performed with Power Query</li>
+          <li>Visual reports enabling data-driven decisions</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag">Power BI</span><span class="tag">Excel</span><span class="tag">DAX</span><span class="tag">Power Query</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="full-divider"/>
+
+  <section id="education">
+    <div class="section-label">Education</div>
+    <div class="edu-list">
+
+      <div class="edu-item">
+        <div class="edu-date">2022 — 2026</div>
+        <div class="edu-content">
+          <h3>B.E. in Information Science & Engineering</h3>
+          <div class="edu-inst">Visvesvaraya Technological University (VTU)</div>
+          <p>Studying core CS fundamentals alongside data analytics, DBMS, and Python programming.</p>
+        </div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-date">2020 — 2022</div>
+        <div class="edu-content">
+          <h3>Pre-University — PCMC</h3>
+          <div class="edu-inst">Sri Chaitanya PU College, Ballari</div>
+          <p>Physics, Chemistry, Mathematics, and Computer Science stream.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="coursework-grid">
+      <div class="course-card">Database Management Systems</div>
+      <div class="course-card">Python Programming</div>
+      <div class="course-card">Object-Oriented Programming</div>
+      <div class="course-card">Data Analytics</div>
+      <div class="course-card">Data Visualization</div>
+    </div>
+  </section>
+
+  <hr class="full-divider"/>
+
+  <section id="contact">
+    <div class="contact-wrap">
+      <div class="section-label" style="justify-content:center; margin-bottom:2rem;">Contact</div>
+      <h2>Let's connect<br>and collaborate.</h2>
+      <p>Open to data analyst roles, internships, and interesting projects.</p>
+      <div class="contact-details">
+        <a href="mailto:balajik12072003@gmail.com">✉ balajik12072003@gmail.com</a>
+        <a href="tel:+917975068626">📞 +91-7975068626</a>
+        <a href="#">↗ LinkedIn</a>
+        <a href="#">↗ GitHub</a>
+      </div>
+      <a href="mailto:balajik12072003@gmail.com" class="btn btn-primary">Say hello →</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Balaji K — Aspiring Data Analyst
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.project-card, .edu-item, .course-card').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
