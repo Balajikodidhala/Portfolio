@@ -122,7 +122,7 @@ D
 
 Deduce Technologies
 
-Since August 2026. GIS mapping with QGIS and Python (PyQGIS).
+Data analytics 
 
 QGISPyQGISPython
 
