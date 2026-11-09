@@ -116,8 +116,6 @@ Quick Learner & Self-Motivated
 
 ## Experience
 
-D
-
 ### Project Trainee
 
 Deduce Technologies
@@ -126,7 +124,6 @@ Since August 2026. Data analytics
 
 QGISPyQGISPython
 
-QS
 
 ### Python & Data Science Intern
 
