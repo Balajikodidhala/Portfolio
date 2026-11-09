@@ -116,17 +116,11 @@ Quick Learner & Self-Motivated
 
 ## Experience
 
-D
-
 ### Project Trainee
 
 Deduce Technologies
 
 Data analytics 
-
-QGISPyQGISPython
-
-QS
 
 ### Python & Data Science Intern
 
